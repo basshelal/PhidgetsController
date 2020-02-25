@@ -17,27 +17,47 @@ class MainActivity : AppCompatActivity() {
 
         Manager.Initialize(this)
 
-        run { x_textView.text = "No Phidgets!" }
-        run { y_textView.text = "No Phidgets!" }
+        run {
+            leftX_textView.text = "No Phidgets!"
+            leftY_textView.text = "No Phidgets!"
+            rightX_textView.text = "No Phidgets!"
+            rightY_textView.text = "No Phidgets!"
+        }
 
         try {
 
             Controller.initialize()
 
             Controller.doOnReady = {
-                run { x_textView.text = "Ready!" }
-                run { y_textView.text = "Ready!" }
+                run {
+                    leftX_textView.text = "Ready!"
+                    leftY_textView.text = "Ready!"
+                    rightX_textView.text = "Ready!"
+                    rightY_textView.text = "Ready!"
+                }
             }
 
             Controller.Sensors.LEFT_JOYSTICK_X.onChange = {
-                run { x_textView.text = "x: $it" }
+                run {
+                    leftX_textView.text = "x: $it"
+                }
             }
             Controller.Sensors.LEFT_JOYSTICK_Y.onChange = {
-                run { y_textView.text = "y: $it" }
+                run { leftY_textView.text = "y: $it" }
+            }
+            Controller.Sensors.RIGHT_JOYSTICK_X.onChange = {
+                run { rightX_textView.text = "x: $it" }
+            }
+            Controller.Sensors.RIGHT_JOYSTICK_Y.onChange = {
+                run { rightY_textView.text = "y: $it" }
             }
         } catch (e: PhidgetException) {
-            run { x_textView.text = "Error Loading Phidgets Library!" }
-            run { y_textView.text = "Error Loading Phidgets Library!" }
+            run {
+                leftX_textView.text = "Error Loading Phidgets Library!"
+                leftY_textView.text = "Error Loading Phidgets Library!"
+                rightX_textView.text = "Error Loading Phidgets Library!"
+                rightY_textView.text = "Error Loading Phidgets Library!"
+            }
             Log.e("ERROR", e.errorNumber.toString())
             Log.e("ERROR", e.description)
         }

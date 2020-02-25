@@ -7,23 +7,60 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/x_textView"
+    <LinearLayout
+        android:id="@+id/sensorInfo_linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="x: 500" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/y_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/x_textView"
-        tools:text="y: 500" />
+        <uk.whitecrescent.phidgetscontroller.JoystickView
+            android:id="@+id/left_joyStickView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:edge_radius="60dp"
+            app:stick_color="@color/colorPrimaryDark"
+            app:stick_radius="30dp" />
+
+        <TextView
+            android:id="@+id/leftX_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:text="x: 500" />
+
+        <TextView
+            android:id="@+id/leftY_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:text="y: 500" />
+
+        <uk.whitecrescent.phidgetscontroller.JoystickView
+            android:id="@+id/right_joyStickView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:edge_radius="60dp"
+            app:stick_color="@color/colorPrimaryDark"
+            app:stick_radius="30dp" />
+
+        <TextView
+            android:id="@+id/rightX_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:text="x: 500" />
+
+        <TextView
+            android:id="@+id/rightY_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:text="y: 500" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
