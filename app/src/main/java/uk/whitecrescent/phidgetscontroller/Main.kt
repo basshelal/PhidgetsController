@@ -84,26 +84,24 @@ object Controller {
             Sensors.ALL[it.index + 7].value = it.value
         }
 
-        largeInterfaceKit.addAttachListener {
-            componentsReady[0] = true
+        fun invokeReady() {
             if (componentsReady.all { true } && !onReadyInvoked) {
                 onReadyInvoked = true
                 doOnReady()
             }
+        }
+
+        largeInterfaceKit.addAttachListener {
+            componentsReady[0] = true
+            invokeReady()
         }
         smallInterfaceKit.addAttachListener {
             componentsReady[1] = true
-            if (componentsReady.all { true } && !onReadyInvoked) {
-                onReadyInvoked = true
-                doOnReady()
-            }
+            invokeReady()
         }
         spatial.addAttachListener {
             componentsReady[2] = true
-            if (componentsReady.all { true } && !onReadyInvoked) {
-                onReadyInvoked = true
-                doOnReady()
-            }
+            invokeReady()
         }
     }
 
@@ -114,6 +112,7 @@ object Controller {
     }
 }
 
+// For testing shit on JVM not on Android!
 fun main() {
 
     Controller.initialize()
