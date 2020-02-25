@@ -16,22 +16,23 @@ class Sensor(val index: Int) {
 object Controller {
 
     // The sensors attached to the Controller
+    // Ensure that the indexes are the same ones on the device!!!
     object Sensors {
         val LEFT_JOYSTICK_X = Sensor(0)
-        val LEFT_JOYSTICK_Y = Sensor(0)
-        val RIGHT_JOYSTICK_X = Sensor(0)
-        val RIGHT_JOYSTICK_Y = Sensor(0)
-        val FORCE_1 = Sensor(0)
-        val FORCE_2 = Sensor(0)
-        val FORCE_3 = Sensor(0)
-        val FORCE_4 = Sensor(0)
-        val TOUCH_1 = Sensor(0)
-        val TOUCH_2 = Sensor(0)
-        val TOUCH_3 = Sensor(0)
-        val TOUCH_4 = Sensor(0)
-        val ROTATION_1 = Sensor(0)
-        val ROTATION_2 = Sensor(0)
-        val SLIDER = Sensor(0)
+        val LEFT_JOYSTICK_Y = Sensor(1)
+        val RIGHT_JOYSTICK_X = Sensor(2)
+        val RIGHT_JOYSTICK_Y = Sensor(3)
+        val FORCE_1 = Sensor(4)
+        val FORCE_2 = Sensor(5)
+        val FORCE_3 = Sensor(6)
+        val FORCE_4 = Sensor(7)
+        val TOUCH_1 = Sensor(8)
+        val TOUCH_2 = Sensor(9)
+        val TOUCH_3 = Sensor(10)
+        val TOUCH_4 = Sensor(11)
+        val ROTATION_1 = Sensor(12)
+        val ROTATION_2 = Sensor(13)
+        val SLIDER = Sensor(14)
 
         val ALL = listOf(
                 LEFT_JOYSTICK_X,
@@ -49,7 +50,7 @@ object Controller {
                 ROTATION_1,
                 ROTATION_2,
                 SLIDER
-        )
+        ).sortedBy { it.index }
     }
 
     object Serials {
@@ -58,40 +59,51 @@ object Controller {
         const val SPATIAL = 296234
     }
 
+    // There are 3 independent components, InterfaceKits contain the sensors
     val smallInterfaceKit = InterfaceKitPhidget()
     val largeInterfaceKit = InterfaceKitPhidget()
     val spatial = SpatialPhidget()
     // TODO: 24-Feb-20 Make a nice abstraction for the Spatial
 
-    val allSensorData: List<Int> get() = Sensors.ALL.map { it.value }
+    inline val allSensorData: List<Int> get() = Sensors.ALL.map { it.value }
 
     var doOnReady: () -> Unit = {}
     private val componentsReady = mutableListOf(false, false, false)
-    private val onReadyInvoked = false
+    private var onReadyInvoked = false
 
     fun initialize() {
-        smallInterfaceKit.open(Serials.INTERFACE_KIT_SMALL)
         largeInterfaceKit.open(Serials.INTERFACE_KIT_LARGE)
+        smallInterfaceKit.open(Serials.INTERFACE_KIT_SMALL)
         spatial.open(Serials.SPATIAL)
 
-        smallInterfaceKit.addSensorChangeListener {
+        largeInterfaceKit.addSensorChangeListener {
+
             Sensors.ALL[it.index].value = it.value
         }
-        largeInterfaceKit.addSensorChangeListener {
+        smallInterfaceKit.addSensorChangeListener {
             Sensors.ALL[it.index + 7].value = it.value
         }
 
-        smallInterfaceKit.addAttachListener {
-            componentsReady[0] = true
-            if (componentsReady.all { true } && !onReadyInvoked) doOnReady()
-        }
         largeInterfaceKit.addAttachListener {
+            componentsReady[0] = true
+            if (componentsReady.all { true } && !onReadyInvoked) {
+                onReadyInvoked = true
+                doOnReady()
+            }
+        }
+        smallInterfaceKit.addAttachListener {
             componentsReady[1] = true
-            if (componentsReady.all { true } && !onReadyInvoked) doOnReady()
+            if (componentsReady.all { true } && !onReadyInvoked) {
+                onReadyInvoked = true
+                doOnReady()
+            }
         }
         spatial.addAttachListener {
             componentsReady[2] = true
-            if (componentsReady.all { true } && !onReadyInvoked) doOnReady()
+            if (componentsReady.all { true } && !onReadyInvoked) {
+                onReadyInvoked = true
+                doOnReady()
+            }
         }
     }
 
@@ -104,28 +116,17 @@ object Controller {
 
 fun main() {
 
-    val interfaceKitSmall = InterfaceKitPhidget()
-    val interfaceKitLarge = InterfaceKitPhidget()
-    val spatial = SpatialPhidget()
+    Controller.initialize()
 
-    interfaceKitSmall.open(Controller.Serials.INTERFACE_KIT_SMALL)
-    interfaceKitLarge.open(Controller.Serials.INTERFACE_KIT_LARGE)
+    Controller.doOnReady = {
 
-    spatial.open(Controller.Serials.SPATIAL)
-
-    Thread.sleep(500)
-
-    spatial.dataRate = 500
-
-    spatial.addSpatialDataListener {
-        println(it.data.first().timeSeconds)
     }
 
-    interfaceKitSmall.addSensorChangeListener {
-        println("${it.source} ${it.index} ${it.value}")
+    Controller.Sensors.LEFT_JOYSTICK_X.onChange = {
+        println("x: $it")
     }
-    interfaceKitLarge.addSensorChangeListener {
-        println("${it.source} ${it.index} ${it.value}")
+    Controller.Sensors.LEFT_JOYSTICK_Y.onChange = {
+        println("y: $it")
     }
 
     // Better than while(true) ^_^
