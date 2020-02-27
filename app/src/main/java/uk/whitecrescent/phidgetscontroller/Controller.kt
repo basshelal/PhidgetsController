@@ -22,17 +22,18 @@ object Controller {
         val LEFT_JOYSTICK_Y = Sensor(1)
         val RIGHT_JOYSTICK_X = Sensor(2)
         val RIGHT_JOYSTICK_Y = Sensor(3)
-        val FORCE_1 = Sensor(4)
-        val FORCE_2 = Sensor(5)
-        val FORCE_3 = Sensor(6)
-        val FORCE_4 = Sensor(7)
-        val TOUCH_1 = Sensor(8)
-        val TOUCH_2 = Sensor(9)
-        val TOUCH_3 = Sensor(10)
-        val TOUCH_4 = Sensor(11)
-        val ROTATION_1 = Sensor(12)
-        val ROTATION_2 = Sensor(13)
-        val SLIDER = Sensor(14)
+        val FORCE_1 = Sensor(4) // Y Button
+        val FORCE_2 = Sensor(5) // B Button
+        val FORCE_3 = Sensor(6) // A Button
+        val FORCE_4 = Sensor(7) // X Button
+        val TOUCH_1 = Sensor(8) // DPad Up
+        val TOUCH_2 = Sensor(9) // DPad Right
+        val TOUCH_3 = Sensor(10) // DPad Down
+        val TOUCH_4 = Sensor(11) // DPad Left
+        val ROTATION = Sensor(12) // Volume Knob
+        val TRIGGER_L = Sensor(13) // Left Trigger
+        val TRIGGER_R = Sensor(14) // Right Trigger
+        val EXTRA = Sensor(15) // We have space for one more sensor!
 
         val ALL = listOf(
                 LEFT_JOYSTICK_X,
@@ -47,9 +48,10 @@ object Controller {
                 TOUCH_2,
                 TOUCH_3,
                 TOUCH_4,
-                ROTATION_1,
-                ROTATION_2,
-                SLIDER
+                ROTATION,
+                TRIGGER_L,
+                TRIGGER_R,
+                EXTRA
         ).sortedBy { it.index }
     }
 
@@ -105,7 +107,7 @@ object Controller {
         }
     }
 
-    fun finalize_() {
+    fun finalize() {
         smallInterfaceKit.close()
         largeInterfaceKit.close()
         spatial.close()
