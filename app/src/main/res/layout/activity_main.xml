@@ -17,13 +17,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <uk.whitecrescent.phidgetscontroller.JoystickView
-            android:id="@+id/left_joyStickView"
+        <TextView
+            android:id="@+id/leftJoystick_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:edge_radius="60dp"
-            app:stick_color="@color/colorPrimaryDark"
-            app:stick_radius="30dp" />
+            android:text="Left JoyStick"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/leftX_textView"
@@ -39,13 +39,13 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             tools:text="y: 500" />
 
-        <uk.whitecrescent.phidgetscontroller.JoystickView
-            android:id="@+id/right_joyStickView"
+        <TextView
+            android:id="@+id/rightJoystick_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:edge_radius="60dp"
-            app:stick_color="@color/colorPrimaryDark"
-            app:stick_radius="30dp" />
+            android:text="Right JoyStick"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/rightX_textView"

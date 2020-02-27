@@ -6,11 +6,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import android.util.Log
 import android.view.InputDevice
+import android.view.KeyEvent
+import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.phidgets.PhidgetException
 import com.phidgets.usb.Manager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,42 +46,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-        // Check if the controller is connected through USB
-        // read here https://developer.android.com/guide/topics/connectivity/usb/host
-
-        // Android game controller shit is here https://developer.android.com/training/game-controllers
-
-        /*
-         * Android does not detect us an InputDevice but instead as 3 USB devices, the same 3
-         * components found in the Controller object.
-         * Fine, but how can we do Android MotionEvent and KeyEvent mapping to the system??
-         * Look into InputMethod and InputMethodService
-         * https://developer.android.com/guide/topics/text/creating-input-method
-         *
-         */
+        // As a reference, the DualShock4 is registered as both a USBDevice AND an InputDevice!
 
         val allInputDevicesString = allInputDevices.joinToString(separator = ", \n") { it.toString() }
 
         val allUsbDevicesString = allUsbDevices.joinToString(separator = ", \n") { it.toString() }
 
-
-        loggingInfo_textView.text = allUsbDevicesString
-
-
-        InputMethodService()
     }
 
-    val allInputDevices: List<InputDevice>
+    inline val allInputDevices: List<InputDevice>
         get() = InputDevice.getDeviceIds().map { InputDevice.getDevice(it) }
 
-    val gameControllers: List<InputDevice>
+    inline val gameControllers: List<InputDevice>
         get() = allInputDevices.filter {
             it.sources and InputDevice.SOURCE_GAMEPAD == InputDevice.SOURCE_GAMEPAD
                     || it.sources and InputDevice.SOURCE_JOYSTICK == InputDevice.SOURCE_JOYSTICK
         }
 
-    val allUsbDevices: List<UsbDevice>
+    inline val allUsbDevices: List<UsbDevice>
         get() = (getSystemService(Context.USB_SERVICE) as UsbManager).deviceList.values.toList()
 
     @SuppressLint("SetTextI18n")
@@ -112,5 +96,19 @@ class MainActivity : AppCompatActivity() {
     // Use this to circumnavigate errors when touching Views from a thread that isn't it's own
     private inline fun run(crossinline block: () -> Unit) {
         root_constraintLayout.post { block() }
+    }
+
+    override fun onGenericMotionEvent(event: MotionEvent?): Boolean {
+        shortSnackbar("event: $event")
+        return super.onGenericMotionEvent(event)
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        shortSnackbar("keyCode: $keyCode event: $event")
+        return super.onKeyDown(keyCode, event)
+    }
+
+    inline fun shortSnackbar(text: Any?) {
+        Snackbar.make(root_constraintLayout, text.toString(), Snackbar.LENGTH_SHORT)
     }
 }
