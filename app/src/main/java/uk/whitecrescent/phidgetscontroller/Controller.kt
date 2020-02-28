@@ -30,9 +30,9 @@ object Controller {
         val TOUCH_2 = Sensor(9) // DPad Right
         val TOUCH_3 = Sensor(10) // DPad Down
         val TOUCH_4 = Sensor(11) // DPad Left
-        val ROTATION = Sensor(12) // Volume Knob
-        val TRIGGER_L = Sensor(13) // Left Trigger
-        val TRIGGER_R = Sensor(14) // Right Trigger
+        val ROTATION = Sensor(12) // Left Trigger
+        val TRIGGER_L = Sensor(13) // Right Trigger
+        val TRIGGER_R = Sensor(14) // Volume Knob
         val EXTRA = Sensor(15) // We have space for one more sensor!
 
         val ALL = listOf(
@@ -79,7 +79,6 @@ object Controller {
         spatial.open(Serials.SPATIAL)
 
         largeInterfaceKit.addSensorChangeListener {
-
             Sensors.ALL[it.index].value = it.value
         }
         smallInterfaceKit.addSensorChangeListener {

@@ -18,53 +18,17 @@
 
         <Button
             android:id="@+id/controllerView_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Open Controller View" />
+            android:text="Controller View"
+            android:textAllCaps="false" />
 
-        <TextView
-            android:id="@+id/leftJoystick_textView"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/sensorDataView_button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Left JoyStick"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="28sp" />
-
-        <TextView
-            android:id="@+id/leftX_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="x: 500" />
-
-        <TextView
-            android:id="@+id/leftY_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="y: 500" />
-
-        <TextView
-            android:id="@+id/rightJoystick_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Right JoyStick"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textSize="28sp" />
-
-        <TextView
-            android:id="@+id/rightX_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="x: 500" />
-
-        <TextView
-            android:id="@+id/rightY_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="y: 500" />
+            android:text="Sensor Data"
+            android:textAllCaps="false" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
