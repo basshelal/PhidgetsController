@@ -29,6 +29,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sensorLabel_textView"
         app:layout_constraintTop_toTopOf="@id/sensorLabel_textView"
-        tools:text="500" />
+        tools:text="0000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

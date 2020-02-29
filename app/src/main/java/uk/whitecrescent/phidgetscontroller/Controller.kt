@@ -22,17 +22,17 @@ object Controller {
         val LEFT_JOYSTICK_Y = Sensor(1)
         val RIGHT_JOYSTICK_X = Sensor(2)
         val RIGHT_JOYSTICK_Y = Sensor(3)
-        val FORCE_1 = Sensor(4) // Y Button
-        val FORCE_2 = Sensor(5) // B Button
-        val FORCE_3 = Sensor(6) // A Button
-        val FORCE_4 = Sensor(7) // X Button
-        val TOUCH_1 = Sensor(8) // DPad Up
-        val TOUCH_2 = Sensor(9) // DPad Right
-        val TOUCH_3 = Sensor(10) // DPad Down
-        val TOUCH_4 = Sensor(11) // DPad Left
-        val ROTATION = Sensor(12) // Left Trigger
-        val TRIGGER_L = Sensor(13) // Right Trigger
-        val TRIGGER_R = Sensor(14) // Volume Knob
+        val Y_BUTTON = Sensor(4)
+        val B_BUTTON = Sensor(5)
+        val A_BUTTON = Sensor(6)
+        val X_BUTTON = Sensor(7)
+        val UP_DPAD = Sensor(8)
+        val RIGHT_DPAD = Sensor(9)
+        val DOWN_DPAD = Sensor(10)
+        val LEFT_DPAD = Sensor(11)
+        val LEFT_TRIGGER = Sensor(12)
+        val RIGHT_TRIGGER = Sensor(13)
+        val VOLUME_KNOB = Sensor(14)
         val EXTRA = Sensor(15) // We have space for one more sensor!
 
         val ALL = listOf(
@@ -40,17 +40,17 @@ object Controller {
                 LEFT_JOYSTICK_Y,
                 RIGHT_JOYSTICK_X,
                 RIGHT_JOYSTICK_Y,
-                FORCE_1,
-                FORCE_2,
-                FORCE_3,
-                FORCE_4,
-                TOUCH_1,
-                TOUCH_2,
-                TOUCH_3,
-                TOUCH_4,
-                ROTATION,
-                TRIGGER_L,
-                TRIGGER_R,
+                Y_BUTTON,
+                B_BUTTON,
+                A_BUTTON,
+                X_BUTTON,
+                UP_DPAD,
+                RIGHT_DPAD,
+                DOWN_DPAD,
+                LEFT_DPAD,
+                LEFT_TRIGGER,
+                RIGHT_TRIGGER,
+                VOLUME_KNOB,
                 EXTRA
         ).sortedBy { it.index }
     }

@@ -31,7 +31,7 @@ class SensorInfoView
             valueText = getString(R.styleable.SensorInfoView_valueText) ?: ""
         }.recycle()
 
-        valueText = "500"
+        valueText = "0000"
 
     }
 }

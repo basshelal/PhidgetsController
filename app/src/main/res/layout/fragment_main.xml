@@ -21,14 +21,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Controller View"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/sensorDataView_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sensor Data"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
