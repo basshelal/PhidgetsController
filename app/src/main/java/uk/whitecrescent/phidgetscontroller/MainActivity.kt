@@ -2,30 +2,35 @@
 
 package uk.whitecrescent.phidgetscontroller
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MotionEvent
+import android.view.View
+import android.view.animation.TranslateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.configuration
+import org.jetbrains.anko.landscape
 import uk.whitecrescent.phidgetscontroller.fragments.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction()
-                .add(fragmentContainer_frameLayout.id, MainFragment(), "MainFragment")
-                .commit()
+        if (supportFragmentManager.fragments.isEmpty()) {
+            supportFragmentManager.beginTransaction()
+                    .add(fragmentContainer_frameLayout.id, MainFragment(), "MainFragment")
+                    .commit()
+        }
     }
 
     // Use this to circumnavigate errors when touching Views from a thread that isn't it's own
@@ -80,4 +85,41 @@ class MainActivity : AppCompatActivity() {
 
     inline val isAllPhidgetsConnected: Boolean
         get() = connectedPhidgets.filter { it.productId == 69 || it.productId == 51 }.size == 3
+
+    inline var landscape: Boolean
+        set(value) {
+            requestedOrientation = if (value) ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            else ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
+        get() = configuration.landscape
+
+    inline fun setFullScreen(fullScreen: Boolean) {
+        window.decorView.systemUiVisibility =
+                if (fullScreen)
+                    (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                            or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            or View.SYSTEM_UI_FLAG_FULLSCREEN)
+                else View.SYSTEM_UI_FLAG_VISIBLE
+    }
+
+    inline fun hideAppBar(delay: Long) {
+        appBar?.doInBackgroundDelayed(delay) {
+            startAnimation(TranslateAnimation(x, x, y, -height.F).also {
+                it.duration = 500L
+                it.fillAfter = true
+            })
+        }
+    }
+
+    inline fun showAppBar(delay: Long) {
+        appBar?.doInBackgroundDelayed(delay) {
+            startAnimation(TranslateAnimation(x, x, -height.F, 0F).also {
+                it.duration = 500L
+                it.fillAfter = true
+            })
+        }
+    }
 }

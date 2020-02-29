@@ -23,12 +23,21 @@ class MainFragment : BaseFragment() {
 
         mainActivity.appBarText = "Phidgets Controller"
 
+        mainActivity.landscape = false
+        mainActivity.setFullScreen(false)
+
         controllerView_button.setOnClickListener {
+            mainActivity.landscape = true
             mainActivity.showFragment(ControllerViewFragment())
         }
 
         sensorDataView_button.setOnClickListener {
             mainActivity.showFragment(SensorDataFragment())
+        }
+
+        demoGame_button.setOnClickListener {
+            mainActivity.landscape = true
+            mainActivity.showFragment(GameFragment())
         }
     }
 

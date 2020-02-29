@@ -33,7 +33,7 @@ object Controller {
         val LEFT_TRIGGER = Sensor(12)
         val RIGHT_TRIGGER = Sensor(13)
         val VOLUME_KNOB = Sensor(14)
-        val EXTRA = Sensor(15) // We have space for one more sensor!
+        val EXTRA = Sensor(15) // Unsure but this should probably be a menu button?
 
         val ALL = listOf(
                 LEFT_JOYSTICK_X,

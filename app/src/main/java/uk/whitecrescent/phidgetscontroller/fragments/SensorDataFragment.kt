@@ -13,8 +13,12 @@ import com.phidgets.usb.Manager
 import kotlinx.android.synthetic.main.fragment_sensor_data.*
 import uk.whitecrescent.phidgetscontroller.Controller
 import uk.whitecrescent.phidgetscontroller.R
+import java.util.Timer
+import kotlin.concurrent.timer
 
 class SensorDataFragment : BaseFragment() {
+
+    lateinit var timer: Timer
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -39,7 +43,6 @@ class SensorDataFragment : BaseFragment() {
             Log.e("ERROR", e.description)
         }
     }
-
 
     @SuppressLint("SetTextI18n")
     private inline fun initializePhidgets() {
@@ -68,6 +71,28 @@ class SensorDataFragment : BaseFragment() {
         // Extras
         Controller.Sensors.VOLUME_KNOB.onChange = { post { volumeKnob_sensorInfoView.valueText = "$it" } }
         Controller.Sensors.EXTRA.onChange = { post { extra_sensorInfoView.valueText = "$it" } }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        timer.purge()
+        timer.cancel()
+        timer.purge()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val array = Array(1000) { it }
+        var current = 0
+
+        timer = timer(period = 32L) {
+            Controller.Sensors.ALL.forEach {
+                it.value = array[current]
+            }
+            if (current != array.lastIndex) current++ else current = 0
+        }
     }
 
     inline fun post(crossinline block: () -> Unit) = mainActivity.post(block)

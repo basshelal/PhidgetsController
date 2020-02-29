@@ -1,10 +1,11 @@
-package uk.whitecrescent.phidgetscontroller
+package uk.whitecrescent.phidgetscontroller.views
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.view_sensor_info.view.*
+import uk.whitecrescent.phidgetscontroller.R
 
 class SensorInfoView
 @JvmOverloads constructor(

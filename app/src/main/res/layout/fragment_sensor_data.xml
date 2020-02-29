@@ -33,97 +33,97 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/leftX_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Left X:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/leftY_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Left Y:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/rightX_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Right X:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/rightY_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Right Y:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/yButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Y Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/bButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="B Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/aButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="A Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/xButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="X Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/upButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="↑ Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/rightButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="→ Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/downButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="↓ Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/leftButton_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="← Button:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/leftTrigger_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Left Trigger:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/rightTrigger_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Right Trigger:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/volumeKnob_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelText="Volume Knob:" />
 
-            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+            <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
                 android:id="@+id/extra_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

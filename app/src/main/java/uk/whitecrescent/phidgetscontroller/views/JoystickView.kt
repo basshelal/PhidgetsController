@@ -1,8 +1,10 @@
-package uk.whitecrescent.phidgetscontroller
+package uk.whitecrescent.phidgetscontroller.views
 
 import android.content.Context
 import android.util.AttributeSet
 import me.caibou.rockerview.JoystickView
+import uk.whitecrescent.phidgetscontroller.D
+import uk.whitecrescent.phidgetscontroller.F
 
 
 // TODO: 25-Feb-20 Our own custom Joystick might be better if this is an important element of the code
