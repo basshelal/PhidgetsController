@@ -21,7 +21,7 @@ class MainFragment : BaseFragment() {
 
         val allUsbDevicesString = mainActivity.allUsbDevices.joinToString(separator = ", \n") { it.toString() }
 
-        mainActivity.actionBarText = "Phidgets Controller"
+        mainActivity.appBarText = "Phidgets Controller"
 
         controllerView_button.setOnClickListener {
             mainActivity.showFragment(ControllerViewFragment())

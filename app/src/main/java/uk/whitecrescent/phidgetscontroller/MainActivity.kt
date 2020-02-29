@@ -65,11 +65,11 @@ class MainActivity : AppCompatActivity() {
                 .commit()
     }
 
-    inline var actionBarText: String
+    inline var appBarText: String
         set(value) {
-            supportActionBar?.title = value
+            appBar.textView.text = value
         }
-        get() = supportActionBar?.title.toString()
+        get() = appBar.textView.text.toString()
 
     inline val allUsbDevices: List<UsbDevice>
         get() = (getSystemService(Context.USB_SERVICE) as? UsbManager)

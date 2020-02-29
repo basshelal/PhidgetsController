@@ -9,121 +9,143 @@
         android:id="@+id/title_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textSize="24sp"
         android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Phidgets Ready" />
 
-    <LinearLayout
-        android:id="@+id/sensorInfo_linearLayout"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_textView">
 
-        <TextView
-            android:id="@+id/leftX_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="left x: 500" />
+        <LinearLayout
+            android:id="@+id/sensorInfo_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/leftY_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="left y: 500" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/leftX_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Left X:"
+                tools:valueText="500" />
 
-        <TextView
-            android:id="@+id/rightX_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="right x: 500" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/leftY_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Left Y:"
+                tools:valueText="500" />
 
-        <TextView
-            android:id="@+id/rightY_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="right y: 500" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/rightX_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Right X:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Y Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/rightY_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Left X:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="B Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/yButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Y Button:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="A Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/bButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="B Button:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="X Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/aButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="A Button:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="↑ Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/xButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="X Button:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="→ Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/upButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="↑ Button:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="↓ Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/rightButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="→ Button"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="← Button" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/downButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="↓ Button"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Left Trigger" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/leftButton_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="← Button"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Right Trigger" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/leftTrigger_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Left Trigger:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Volume Knob" />
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/rightTrigger_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Right Trigger:"
+                tools:valueText="500" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Extra" />
-    </LinearLayout>
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/volumeKnob_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Volume Knob:"
+                tools:valueText="500" />
+
+            <uk.whitecrescent.phidgetscontroller.SensorInfoView
+                android:id="@+id/extra_sensorInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelText="Extra:"
+                tools:valueText="500" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

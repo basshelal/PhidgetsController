@@ -27,7 +27,7 @@ class SensorDataFragment : BaseFragment() {
 
         Manager.Initialize(context)
 
-        mainActivity.actionBarText = "Sensor Data"
+        mainActivity.appBarText = "Sensor Data"
 
         title_textView.text = if (mainActivity.isAllPhidgetsConnected) "Phidgets Ready!"
         else "No Phidgets Connected!"
@@ -45,24 +45,12 @@ class SensorDataFragment : BaseFragment() {
     private inline fun initializePhidgets() {
         Controller.initialize()
 
-        Controller.doOnReady = {
-            post {
-                //  title_textView.text = "Phidgets Ready!"
-            }
-        }
+        Controller.doOnReady = { post { } }
 
-        Controller.Sensors.LEFT_JOYSTICK_X.onChange = {
-            post { leftX_textView.text = "left x: $it" }
-        }
-        Controller.Sensors.LEFT_JOYSTICK_Y.onChange = {
-            post { leftY_textView.text = "left y: $it" }
-        }
-        Controller.Sensors.RIGHT_JOYSTICK_X.onChange = {
-            post { rightX_textView.text = "right x: $it" }
-        }
-        Controller.Sensors.RIGHT_JOYSTICK_Y.onChange = {
-            post { rightY_textView.text = "right y: $it" }
-        }
+        Controller.Sensors.LEFT_JOYSTICK_X.onChange = { post { leftX_sensorInfoView.valueText = "$it" } }
+        Controller.Sensors.LEFT_JOYSTICK_Y.onChange = { post { leftY_sensorInfoView.valueText = "$it" } }
+        Controller.Sensors.RIGHT_JOYSTICK_X.onChange = { post { rightX_sensorInfoView.valueText = "$it" } }
+        Controller.Sensors.RIGHT_JOYSTICK_Y.onChange = { post { rightY_sensorInfoView.valueText = "$it" } }
     }
 
     inline fun post(crossinline block: () -> Unit) = mainActivity.post(block)

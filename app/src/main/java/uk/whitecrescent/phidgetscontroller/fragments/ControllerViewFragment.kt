@@ -16,7 +16,7 @@ class ControllerViewFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mainActivity.actionBarText = "Controller View"
+        mainActivity.appBarText = "Controller View"
     }
 
 }
