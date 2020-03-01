@@ -26,7 +26,7 @@ import uk.whitecrescent.phidgetscontroller.fragments.SensorDataFragment
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var currentFragmentTag: String
+    var currentFragmentTag: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +58,22 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = getColorCompat(R.color.colorPrimary)
         window.navigationBarColor = attr(R.attr.colorSurface).data
 
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        currentFragmentTag = savedInstanceState.getString("currentFragmentTag")
+                ?: FRAGMENT_SENSOR_DATA
+
+        showFragment(currentFragmentTag)
+        currentFragment.onShow()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString("currentFragmentTag", this.currentFragmentTag)
     }
 
     // Use this to circumnavigate errors when touching Views from a thread that isn't it's own
@@ -96,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                     FRAGMENT_SENSOR_DATA -> SensorDataFragment()
                     FRAGMENT_CONTROLLER_VIEW -> ControllerViewFragment()
                     FRAGMENT_GAME -> GameFragment()
-                    else -> throw IllegalArgumentException()
+                    else -> throw IllegalArgumentException("No Such Fragment with name $name")
                 }
                 supportFragmentManager.beginTransaction()
                         .hide(currentFragment)
@@ -147,7 +163,7 @@ class MainActivity : AppCompatActivity() {
 
     inline val currentFragment: BaseFragment
         get() = supportFragmentManager.findFragmentByTag(currentFragmentTag) as? BaseFragment
-                ?: throw IllegalArgumentException()
+                ?: throw IllegalArgumentException("No Fragment with name $currentFragmentTag")
 
     inline fun setFullScreen(fullScreen: Boolean) {
         window.decorView.systemUiVisibility =
