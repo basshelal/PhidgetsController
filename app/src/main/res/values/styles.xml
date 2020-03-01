@@ -9,4 +9,12 @@
         <item name="fontFamily">@font/product</item>
     </style>
 
+    <!-- Launcher used just for the splash screen -->
+    <style name="AppTheme.Launcher" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
+
 </resources>

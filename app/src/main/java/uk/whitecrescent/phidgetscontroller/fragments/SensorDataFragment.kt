@@ -44,7 +44,12 @@ class SensorDataFragment : BaseFragment() {
     private inline fun initializePhidgets() {
         Controller.initialize()
 
-        Controller.doOnReady = { post { } }
+        Controller.doOnReady = {
+            post {
+                title_textView.text = if (mainActivity.isAllPhidgetsConnected) "Phidgets Ready!"
+                else "No Phidgets Connected!"
+            }
+        }
 
         // JoySticks
         Controller.Sensors.LEFT_JOYSTICK_X.onChange = { post { leftX_sensorInfoView.valueText = "$it" } }

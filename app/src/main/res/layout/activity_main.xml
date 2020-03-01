@@ -8,7 +8,7 @@
         android:id="@+id/fragmentContainer_frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+        app:layout_constraintBottom_toTopOf="@id/rect"
         app:layout_constraintTop_toBottomOf="@id/appBar" />
 
     <uk.whitecrescent.waqti.frontend.customview.AppBar
@@ -19,11 +19,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+    <com.github.florent37.shapeofview.shapes.RoundRectView
+        android:id="@+id/rect"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
+        android:elevation="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_items" />
+        app:shape_roundRect_topLeftRadius="12dp"
+        app:shape_roundRect_topRightRadius="12dp">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemIconSize="24dp"
+            app:menu="@menu/menu_items" />
+    </com.github.florent37.shapeofview.shapes.RoundRectView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,7 +82,7 @@ object Controller {
             Sensors.ALL[it.index].value = it.value
         }
         smallInterfaceKit.addSensorChangeListener {
-            Sensors.ALL[it.index + 7].value = it.value
+            Sensors.ALL[it.index + 8].value = it.value
         }
 
         fun invokeReady() {
