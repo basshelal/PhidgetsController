@@ -25,7 +25,7 @@ class AppBar
 ) : FrameLayout(context, attributeSet, defStyle) {
 
     companion object {
-        const val DEFAULT_ELEVATION = 16F
+        const val DEFAULT_ELEVATION = 32F
         const val CORNER_RADIUS = 12
     }
 

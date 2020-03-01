@@ -13,12 +13,14 @@ class GameFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_game, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onShow() {
         mainActivity.appBarText = "Demo Game"
+
         //mainActivity.setFullScreen(true)
     }
 
+    override fun onHide() {
+
+    }
 
 }

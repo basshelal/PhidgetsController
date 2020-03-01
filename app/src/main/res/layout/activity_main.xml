@@ -29,11 +29,14 @@
         app:shape_roundRect_topRightRadius="12dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:backgroundTint="?attr/colorSurface"
+            app:backgroundTint="?attr/colorSurface"
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             app:itemHorizontalTranslationEnabled="true"
             app:itemIconSize="24dp"
+            app:itemTextAppearanceActive="@style/AppTheme"
             app:menu="@menu/menu_items" />
     </com.github.florent37.shapeofview.shapes.RoundRectView>
 

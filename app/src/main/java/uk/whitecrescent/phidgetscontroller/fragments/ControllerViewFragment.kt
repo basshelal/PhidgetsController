@@ -13,9 +13,7 @@ class ControllerViewFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_controller_view, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onShow() {
         mainActivity.appBarText = "Controller View"
         /*val xArray = Array(100) { it }
         var current = 0
@@ -25,6 +23,10 @@ class ControllerViewFragment : BaseFragment() {
             rightJoystick_joystickView.setPosition(50, xArray[current])
             if (current != xArray.lastIndex) current++ else current = 0
         }*/
+    }
+
+    override fun onHide() {
+
     }
 
 }

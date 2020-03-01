@@ -12,37 +12,52 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.animation.TranslateAnimation
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
+import com.phidgets.usb.Manager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.attr
 import org.jetbrains.anko.configuration
 import org.jetbrains.anko.landscape
+import uk.whitecrescent.phidgetscontroller.fragments.BaseFragment
 import uk.whitecrescent.phidgetscontroller.fragments.ControllerViewFragment
 import uk.whitecrescent.phidgetscontroller.fragments.GameFragment
 import uk.whitecrescent.phidgetscontroller.fragments.SensorDataFragment
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var currentFragmentTag: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
 
+        Manager.Initialize(this)
+
         if (supportFragmentManager.fragments.isEmpty()) {
+            val fragment = SensorDataFragment()
             supportFragmentManager.beginTransaction()
-                    .add(fragmentContainer_frameLayout.id, SensorDataFragment(), SensorDataFragment::class.java.name)
-                    .commitNow()
+                    .add(fragmentContainer_frameLayout.id, fragment, FRAGMENT_SENSOR_DATA)
+                    .runOnCommit {
+                        fragment.onShow()
+                        currentFragmentTag = FRAGMENT_SENSOR_DATA
+                    }
+                    .commit()
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.sensorData_menuItem -> showFragment(SensorDataFragment())
-                R.id.controllerView_menuItem -> showFragment(ControllerViewFragment())
-                R.id.demoGame_menuItem -> showFragment(GameFragment())
+                R.id.sensorData_menuItem -> showFragment(FRAGMENT_SENSOR_DATA)
+                R.id.controllerView_menuItem -> showFragment(FRAGMENT_CONTROLLER_VIEW)
+                R.id.demoGame_menuItem -> showFragment(FRAGMENT_GAME)
             }
             true
         }
+
+        window.statusBarColor = getColorCompat(R.color.colorPrimary)
+        window.navigationBarColor = attr(R.attr.colorSurface).data
+
     }
 
     // Use this to circumnavigate errors when touching Views from a thread that isn't it's own
@@ -74,14 +89,36 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(fragmentContainer_frameLayout, text.toString(), Snackbar.LENGTH_SHORT).show()
     }
 
-    inline fun showFragment(fragment: Fragment) {
-        if (supportFragmentManager.findFragmentByTag(fragment::class.java.name) == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(fragmentContainer_frameLayout.id, fragment, fragment::class.java.name)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit()
-        } else {
-            supportFragmentManager.beginTransaction().show(fragment).commit()
+    inline fun showFragment(name: String) {
+        (supportFragmentManager.findFragmentByTag(name) as? BaseFragment).let {
+            if (it == null) {
+                val fragment: BaseFragment = when (name) {
+                    FRAGMENT_SENSOR_DATA -> SensorDataFragment()
+                    FRAGMENT_CONTROLLER_VIEW -> ControllerViewFragment()
+                    FRAGMENT_GAME -> GameFragment()
+                    else -> throw IllegalArgumentException()
+                }
+                supportFragmentManager.beginTransaction()
+                        .hide(currentFragment)
+                        .add(fragmentContainer_frameLayout.id, fragment, name)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .runOnCommit {
+                            currentFragment.onHide()
+                            fragment.onShow()
+                        }
+                        .commit()
+            } else if (name != currentFragmentTag) {
+                supportFragmentManager.beginTransaction()
+                        .hide(currentFragment)
+                        .show(it)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .runOnCommit {
+                            currentFragment.onHide()
+                            it.onShow()
+                        }
+                        .commit()
+            }
+            currentFragmentTag = name
         }
     }
 
@@ -107,6 +144,10 @@ class MainActivity : AppCompatActivity() {
             else ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         }
         get() = configuration.landscape
+
+    inline val currentFragment: BaseFragment
+        get() = supportFragmentManager.findFragmentByTag(currentFragmentTag) as? BaseFragment
+                ?: throw IllegalArgumentException()
 
     inline fun setFullScreen(fullScreen: Boolean) {
         window.decorView.systemUiVisibility =
