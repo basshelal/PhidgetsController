@@ -4,7 +4,6 @@ package uk.whitecrescent.waqti.frontend.customview
 
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
@@ -16,6 +15,7 @@ import kotlinx.android.synthetic.main.view_appbar.view.*
 import org.jetbrains.anko.textColor
 import uk.whitecrescent.phidgetscontroller.R
 import uk.whitecrescent.phidgetscontroller.convertDpToPx
+import uk.whitecrescent.phidgetscontroller.getColorCompat
 
 class AppBar
 @JvmOverloads constructor(
@@ -38,13 +38,7 @@ class AppBar
 
         elevation = DEFAULT_ELEVATION
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            setBackgroundColor(context.resources.getColor(R.color.colorPrimary, null))
-        } else {
-            @Suppress("DEPRECATION")
-            setBackgroundColor(context.resources.getColor(R.color.colorPrimary))
-        }
+        setBackgroundColor(context.getColorCompat(R.color.colorPrimary))
 
         textView.textColor = Color.WHITE
 

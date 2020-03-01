@@ -17,6 +17,14 @@ class ControllerViewFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         mainActivity.appBarText = "Controller View"
+        /*val xArray = Array(100) { it }
+        var current = 0
+        timer(period = 150L) {
+            mainActivity.shortSnackbar("x: ${xArray[current]}")
+            leftJoystick_joystickView.setPosition(50, xArray[current])
+            rightJoystick_joystickView.setPosition(50, xArray[current])
+            if (current != xArray.lastIndex) current++ else current = 0
+        }*/
     }
 
 }

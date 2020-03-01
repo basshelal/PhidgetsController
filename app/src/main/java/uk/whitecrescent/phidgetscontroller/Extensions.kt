@@ -3,8 +3,10 @@
 package uk.whitecrescent.phidgetscontroller
 
 import android.content.Context
+import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
+import androidx.annotation.ColorRes
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -195,3 +197,12 @@ inline infix fun Context.convertDpToPx(dp: Number): Float =
  */
 inline infix fun Context.convertPxToDp(px: Number): Float =
         (px.F / (this.resources.displayMetrics.densityDpi.F / DisplayMetrics.DENSITY_DEFAULT))
+
+fun Context.getColorCompat(@ColorRes intId: Int): Int {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        resources.getColor(R.color.colorPrimary, null)
+    } else {
+        @Suppress("DEPRECATION")
+        resources.getColor(R.color.colorPrimary)
+    }
+}

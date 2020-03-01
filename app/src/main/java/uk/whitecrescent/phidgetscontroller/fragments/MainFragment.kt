@@ -27,7 +27,6 @@ class MainFragment : BaseFragment() {
         mainActivity.setFullScreen(false)
 
         controllerView_button.setOnClickListener {
-            mainActivity.landscape = true
             mainActivity.showFragment(ControllerViewFragment())
         }
 

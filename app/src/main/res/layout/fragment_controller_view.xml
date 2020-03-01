@@ -1,8 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ControllerViewFragment">
+
+    <uk.whitecrescent.phidgetscontroller.views.JoystickView
+        android:id="@+id/rightJoystick_joystickView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:edge_radius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/circleButtons_constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/verticalCenter_guideline"
+        app:layout_constraintTop_toTopOf="@+id/horizontalCenter_guideline"
+        app:stick_color="@color/colorPrimary" />
+
+    <uk.whitecrescent.phidgetscontroller.views.JoystickView
+        android:id="@+id/leftJoystick_joystickView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:edge_radius="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/verticalCenter_guideline"
+        app:layout_constraintStart_toStartOf="@+id/dPad_constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/horizontalCenter_guideline"
+        app:stick_color="@color/colorPrimary" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/circleButtons_constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <uk.whitecrescent.phidgetscontroller.views.CircleButton
+            android:id="@+id/yButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@id/aButton_buttonView"
+            app:layout_constraintEnd_toStartOf="@+id/bButton_buttonView"
+            app:layout_constraintStart_toEndOf="@+id/xButton_buttonView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <uk.whitecrescent.phidgetscontroller.views.CircleButton
+            android:id="@+id/bButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/aButton_buttonView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/xButton_buttonView"
+            app:layout_constraintTop_toBottomOf="@+id/yButton_buttonView" />
+
+        <uk.whitecrescent.phidgetscontroller.views.CircleButton
+            android:id="@+id/aButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bButton_buttonView"
+            app:layout_constraintStart_toEndOf="@+id/xButton_buttonView"
+            app:layout_constraintTop_toBottomOf="@id/yButton_buttonView"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <uk.whitecrescent.phidgetscontroller.views.CircleButton
+            android:id="@+id/xButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/aButton_buttonView"
+            app:layout_constraintEnd_toStartOf="@id/bButton_buttonView"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/yButton_buttonView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dPad_constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <uk.whitecrescent.phidgetscontroller.views.DPadButton
+            android:id="@+id/upButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@id/downButton_buttonView"
+            app:layout_constraintEnd_toStartOf="@+id/rightButton_buttonView"
+            app:layout_constraintStart_toEndOf="@+id/leftButton_buttonView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <uk.whitecrescent.phidgetscontroller.views.DPadButton
+            android:id="@+id/rightButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/downButton_buttonView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toEndOf="@id/leftButton_buttonView"
+            app:layout_constraintTop_toBottomOf="@+id/upButton_buttonView" />
+
+        <uk.whitecrescent.phidgetscontroller.views.DPadButton
+            android:id="@+id/downButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rightButton_buttonView"
+            app:layout_constraintStart_toEndOf="@+id/leftButton_buttonView"
+            app:layout_constraintTop_toBottomOf="@id/upButton_buttonView"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <uk.whitecrescent.phidgetscontroller.views.DPadButton
+            android:id="@+id/leftButton_buttonView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/downButton_buttonView"
+            app:layout_constraintEnd_toStartOf="@id/rightButton_buttonView"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upButton_buttonView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <uk.whitecrescent.phidgetscontroller.views.TriggerButton
+        android:id="@+id/rightTrigger_triggerButton"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/circleButtons_constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/circleButtons_constraintLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <uk.whitecrescent.phidgetscontroller.views.TriggerButton
+        android:id="@+id/leftTrigger_triggerButton"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/dPad_constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/dPad_constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <uk.whitecrescent.phidgetscontroller.views.CircleButton
+        android:id="@+id/pause_circleButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/volume_circleButton"
+        app:layout_constraintEnd_toStartOf="@+id/circleButtons_constraintLayout"
+        app:layout_constraintStart_toEndOf="@+id/dPad_constraintLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <uk.whitecrescent.phidgetscontroller.views.CircleButton
+        android:id="@+id/volume_circleButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rightJoystick_joystickView"
+        app:layout_constraintStart_toEndOf="@+id/leftJoystick_joystickView"
+        app:layout_constraintTop_toTopOf="@+id/horizontalCenter_guideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalCenter_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalCenter_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
