@@ -26,7 +26,7 @@ import uk.whitecrescent.phidgetscontroller.fragments.SensorDataFragment
 
 class MainActivity : AppCompatActivity() {
 
-    var currentFragmentTag: String = ""
+    var currentFragmentTag: String = FRAGMENT_SENSOR_DATA
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
 
         outState.putString("currentFragmentTag", this.currentFragmentTag)
+        currentFragment.onHide()
     }
 
     // Use this to circumnavigate errors when touching Views from a thread that isn't it's own

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_controller_view.*
+import uk.whitecrescent.phidgetscontroller.Controller
 import uk.whitecrescent.phidgetscontroller.R
 
 class ControllerViewFragment : BaseFragment() {
@@ -15,18 +17,26 @@ class ControllerViewFragment : BaseFragment() {
 
     override fun onShow() {
         mainActivity.appBarText = "Controller View"
-        /*val xArray = Array(100) { it }
-        var current = 0
-        timer(period = 150L) {
-            mainActivity.shortSnackbar("x: ${xArray[current]}")
-            leftJoystick_joystickView.setPosition(50, xArray[current])
-            rightJoystick_joystickView.setPosition(50, xArray[current])
-            if (current != xArray.lastIndex) current++ else current = 0
-        }*/
+
+        Controller.initialize()
+
+        // JoySticks
+        Controller.Sensors.LEFT_JOYSTICK_X.onChange = {
+            leftJoystick_joystickView.setPosition(x = it)
+        }
+        Controller.Sensors.LEFT_JOYSTICK_Y.onChange = {
+            leftJoystick_joystickView.setPosition(y = it)
+        }
+        Controller.Sensors.RIGHT_JOYSTICK_X.onChange = {
+            rightJoystick_joystickView.setPosition(x = it)
+        }
+        Controller.Sensors.RIGHT_JOYSTICK_Y.onChange = {
+            rightJoystick_joystickView.setPosition(y = it)
+        }
     }
 
     override fun onHide() {
-
+        Controller.Sensors.ALL.forEach { it.onChange = {} }
     }
 
 }

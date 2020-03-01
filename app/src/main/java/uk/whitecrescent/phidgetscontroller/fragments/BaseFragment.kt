@@ -9,4 +9,6 @@ abstract class BaseFragment : Fragment() {
     abstract fun onHide()
 
     abstract fun onShow()
+
+    inline fun post(crossinline block: () -> Unit) = mainActivity.post(block)
 }
