@@ -16,9 +16,8 @@ class GameFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        mainActivity.appBarText = "Game Fragment"
-        mainActivity.setFullScreen(true)
-        mainActivity.hideAppBar(1000)
+        mainActivity.appBarText = "Demo Game"
+        //mainActivity.setFullScreen(true)
     }
 
 

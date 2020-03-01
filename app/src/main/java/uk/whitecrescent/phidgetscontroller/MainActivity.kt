@@ -18,7 +18,9 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.configuration
 import org.jetbrains.anko.landscape
-import uk.whitecrescent.phidgetscontroller.fragments.MainFragment
+import uk.whitecrescent.phidgetscontroller.fragments.ControllerViewFragment
+import uk.whitecrescent.phidgetscontroller.fragments.GameFragment
+import uk.whitecrescent.phidgetscontroller.fragments.SensorDataFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,8 +30,17 @@ class MainActivity : AppCompatActivity() {
 
         if (supportFragmentManager.fragments.isEmpty()) {
             supportFragmentManager.beginTransaction()
-                    .add(fragmentContainer_frameLayout.id, MainFragment(), "MainFragment")
-                    .commit()
+                    .add(fragmentContainer_frameLayout.id, SensorDataFragment(), SensorDataFragment::class.java.name)
+                    .commitNow()
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.sensorData_menuItem -> showFragment(SensorDataFragment())
+                R.id.controllerView_menuItem -> showFragment(ControllerViewFragment())
+                R.id.demoGame_menuItem -> showFragment(GameFragment())
+            }
+            true
         }
     }
 
@@ -63,11 +74,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     inline fun showFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-                .replace(fragmentContainer_frameLayout.id, fragment, null)
-                .addToBackStack(null)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit()
+        if (supportFragmentManager.findFragmentByTag(fragment::class.java.name) == null) {
+            supportFragmentManager.beginTransaction()
+                    .replace(fragmentContainer_frameLayout.id, fragment, fragment::class.java.name)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit()
+        } else {
+            supportFragmentManager.beginTransaction().show(fragment).commit()
+        }
     }
 
     inline var appBarText: String

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sensorData_menuItem"
+        android:icon="@drawable/description_icon"
+        android:title="Sensor Data" />
+    <item
+        android:id="@+id/controllerView_menuItem"
+        android:icon="@drawable/controller_icon"
+        android:title="Controller View" />
+    <item
+        android:id="@+id/demoGame_menuItem"
+        android:icon="@drawable/play_icon"
+        android:title="Demo Game" />
+</menu>
