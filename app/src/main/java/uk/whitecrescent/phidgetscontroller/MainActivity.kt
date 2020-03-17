@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import com.phidgets.usb.Manager
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.attr
 import org.jetbrains.anko.configuration
 import org.jetbrains.anko.landscape
 import uk.whitecrescent.phidgetscontroller.fragments.BaseFragment
@@ -54,9 +53,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        window.statusBarColor = getColorCompat(R.color.colorPrimary)
-        window.navigationBarColor = attr(R.attr.colorSurface).data
 
     }
 
@@ -152,8 +148,11 @@ class MainActivity : AppCompatActivity() {
     inline val connectedPhidgets: List<UsbDevice>
         get() = allUsbDevices.filter { it.vendorId == 1730 }
 
+    inline val phidgetsConnections: Int
+        get() = connectedPhidgets.filter { it.productId == 69 || it.productId == 51 }.size
+
     inline val isAllPhidgetsConnected: Boolean
-        get() = connectedPhidgets.filter { it.productId == 69 || it.productId == 51 }.size == 3
+        get() = phidgetsConnections == 3
 
     inline var landscape: Boolean
         set(value) {

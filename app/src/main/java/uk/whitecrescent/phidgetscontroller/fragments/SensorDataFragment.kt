@@ -43,8 +43,13 @@ class SensorDataFragment : BaseFragment() {
         Controller.initialize()
 
         Controller.doOnReady = {
-            title_textView.text = if (mainActivity.isAllPhidgetsConnected) "Phidgets Ready!"
-            else "No Phidgets Connected!"
+            title_textView.text =
+                    if (mainActivity.isAllPhidgetsConnected) "All Phidgets Ready!"
+                    else when (mainActivity.phidgetsConnections) {
+                        1 -> "1/3 Phidgets Connected"
+                        2 -> "2/3 Phidgets Connected"
+                        else -> "No Phidgets Connected!"
+                    }
         }
 
         // JoySticks
