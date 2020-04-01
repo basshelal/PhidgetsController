@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:edge_radius="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/circleButtons_constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/verticalCenter_guideline"
         app:layout_constraintTop_toTopOf="@+id/horizontalCenter_guideline"
         app:stick_color="@color/colorPrimary" />
@@ -24,7 +24,7 @@
         app:edge_radius="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/verticalCenter_guideline"
-        app:layout_constraintStart_toStartOf="@+id/dPad_constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontalCenter_guideline"
         app:stick_color="@color/colorPrimary" />
 
@@ -159,12 +159,24 @@
 
     <uk.whitecrescent.phidgetscontroller.views.CircleButton
         android:id="@+id/volume_circleButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/rightJoystick_joystickView"
         app:layout_constraintStart_toEndOf="@+id/leftJoystick_joystickView"
         app:layout_constraintTop_toTopOf="@+id/horizontalCenter_guideline" />
+
+    <TextView
+        android:id="@+id/volume_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/title_textView"
+        app:layout_constraintStart_toStartOf="@+id/title_textView"
+        app:layout_constraintTop_toBottomOf="@+id/volume_circleButton"
+        tools:text="99%" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/verticalCenter_guideline"
