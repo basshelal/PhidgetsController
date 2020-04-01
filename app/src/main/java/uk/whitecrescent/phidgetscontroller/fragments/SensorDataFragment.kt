@@ -2,7 +2,6 @@
 
 package uk.whitecrescent.phidgetscontroller.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,7 +37,6 @@ class SensorDataFragment : BaseFragment() {
         Controller.Sensors.ALL.forEach { it.onChange = {} }
     }
 
-    @SuppressLint("SetTextI18n")
     private inline fun initializePhidgets() {
         Controller.initialize()
 
@@ -72,7 +70,7 @@ class SensorDataFragment : BaseFragment() {
         Controller.Sensors.LEFT_TRIGGER.onChange = { leftTrigger_sensorInfoView.valueText = "$it" }
         // Extras
         Controller.Sensors.VOLUME_KNOB.onChange = { volumeKnob_sensorInfoView.valueText = "$it" }
-        Controller.Sensors.EXTRA.onChange = { extra_sensorInfoView.valueText = "$it" }
+        Controller.Sensors.OPTIONS.onChange = { options_sensorInfoView.valueText = "$it" }
     }
 
 }

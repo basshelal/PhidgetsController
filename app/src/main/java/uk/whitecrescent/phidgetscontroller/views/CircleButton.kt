@@ -21,5 +21,6 @@ class CircleButton
     init {
         View.inflate(context, R.layout.view_circle_button, this)
         this.elevation = 8F
+        this.intensity = 0F
     }
 }

@@ -142,10 +142,10 @@
                 app:valueText="n/a" />
 
             <uk.whitecrescent.phidgetscontroller.views.SensorInfoView
-                android:id="@+id/extra_sensorInfoView"
+                android:id="@+id/options_sensorInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="Extra:"
+                app:labelText="Options:"
                 app:valueText="n/a" />
         </LinearLayout>
 

@@ -1,16 +1,26 @@
 package uk.whitecrescent.phidgetscontroller.views
 
 import android.content.Context
-import android.graphics.drawable.shapes.RoundRectShape
 import android.util.AttributeSet
+import android.view.View
+import com.github.florent37.shapeofview.shapes.RoundRectView
+import kotlinx.android.synthetic.main.view_trigger_button.view.*
+import uk.whitecrescent.phidgetscontroller.R
 
 class TriggerButton
 @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ControllerButton(context, attrs, defStyleAttr) {
+) : RoundRectView(context, attrs, defStyleAttr) {
+
+    inline var intensity: Float
+        set(value) {
+            button_colorView.alpha = value
+        }
+        get() = button_colorView.alpha
 
     init {
-        val outer = FloatArray(8) { 32F }
-        shapeDrawable.shape = RoundRectShape(outer, null, null)
+        View.inflate(context, R.layout.view_trigger_button, this)
+        this.elevation = 8F
+        this.intensity = 0F
     }
 }
